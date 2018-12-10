@@ -1,0 +1,7 @@
+push 365
+push ax 23
+push fx 13
+add ax fx
+sqrt
+pop
+end
