@@ -1,10 +1,7 @@
 #include <iostream>
-#include "CPU.h"
-
-int main() {
+#include "cpu.h"
+int main(int argc, char* argv[]) {
   CPU T;
-  T.DisAssembler();
-  T.Compiler();
-  std::cout << "Hello, World!" << std::endl;
+  T.Compiler(argv[1]);
   return 0;
 }

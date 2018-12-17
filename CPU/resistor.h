@@ -1,23 +1,30 @@
-#ifndef CPU_RISISTOR_H
-#define CPU_RISISTOR_H
+#ifndef MYCPU_RESISTOR_H
+#define MYCPU_RESISTOR_H
 
-#include "Stack.h"
+#include "stack.h"
 
 #include <string>
+#include <cmath>
+
 
 template<typename T>
 class Resistor {
  public:
-  template<typename T>
-  Resistor<T>::Resistor();
-  inline void pushResistor(Stack <double> & stack, const int& name_resistor, T element, int *error = nullptr);
-  T popResistor(Stack <double> & stack, const int &name_resistor, int *error = nullptr);
-  T addResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
-  T mulResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
-  T minusResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
-  T devideResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
+  Resistor();
+  bool pushResistor(const int& name_resistor, T element, int *error = nullptr);
+  T popResistor(const int &name_resistor, int *error = nullptr);
+  bool pushResistorFromStack(Stack <double> & stack, const int &name_resistor, int *error);
+  bool addResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
+  bool mulResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
+  bool minusResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
+  bool devideResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error = nullptr);
+  bool popResistorToStack(Stack <double> & stack, const int &name_resistor, int *error);
+  bool sqrtResistorToStack(Stack <double> & stack, const int &name_resistor, int *error);
+  bool scanfResistor(Stack <double> & stack, const int &name_resistor, int *error);
+  bool printfResistor(Stack <double> & stack, const int &name_resistor, int *error);
 
-  private:
+ private:
+  T& captureRegistr(const int &name_resistor, int *error = nullptr);
   T ax;
   T bx;
   T cx;
@@ -26,9 +33,10 @@ class Resistor {
   T fx;
   T gx;
   T hx;
+  T ix;
   T jx;
 };
 
 template class Resistor <double>;
 
-#endif //CPU_RISISTOR_H
+#endif //MYCPU_RESISTOR_H

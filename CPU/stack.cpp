@@ -1,5 +1,5 @@
 #define private public
-#include "Stack.h"
+#include "stack.h"
 #undef private
 
 

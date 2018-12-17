@@ -1,7 +1,6 @@
-push 365
-push ax 23
-push fx 13
-add ax fx
-sqrt
-pop
+scanf ax
+scanf bx
+add ax bx
+push Stack cx
+printf cx
 end

@@ -1,11 +1,12 @@
+
+#ifndef MYCPU_STACK_H
+#define MYCPU_STACK_H
+
 #undef private
 
 #include <iostream>
 #include <cerrno>
 #include <cassert>
-
-#ifndef STACK_STACK_H
-#define STACK_STACK_H
 
 #define MAGIC1 2147483647
 #define MAGIC2 2147483646
@@ -51,4 +52,4 @@ class Stack {
 
 template class Stack <double>;
 
-#endif STACK_STACK_H
+#endif //MYCPU_STACK_H

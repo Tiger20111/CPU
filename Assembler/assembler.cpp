@@ -9,10 +9,12 @@
   } while (false)
 
 Assembler::Assembler(int size) {
+  InputNamesRegisters();
   line_ = new char[size];
 }
 
 Assembler::Assembler() {
+  InputNamesRegisters();
   line_ = new char[256];
 
   error = 0;
@@ -31,11 +33,15 @@ Assembler::~Assembler() {
   delete line_;
 }
 
-bool Assembler::Assemble(const char *output, const char *input, int hard) {
+bool Assembler::Assemble(const char *input, const char *output, int hard) {
   FILE* in = fopen(input, "r");
-
+  bool success = true;
 
   while (true) {
+
+    if (hard == 1 && (!success)) {
+      return false;
+    }
     Scanf(line_, in);
 
     std::string command = {};
@@ -47,20 +53,17 @@ bool Assembler::Assemble(const char *output, const char *input, int hard) {
     }
 
     if (command == "push") {
-      bool success = pushChoose(code_, line_, names_registers);
-      if (hard == 1 && (!success)) {
-        return false;
-      }
+      success = pushChoose(code_, line_, names_registers);
       continue;
     }
 
     if (command == "pop") {
-      popChoose(code_, line_, names_registers);
+      success = popChoose(code_, line_, names_registers);
       continue;
     }
 
     if (command == "mul") {
-      mulChoose(code_, line_, names_registers);
+      success = mulChoose(code_, line_, names_registers);
       continue;
     }
 
@@ -70,24 +73,37 @@ bool Assembler::Assemble(const char *output, const char *input, int hard) {
     }
 
     if (command == "add") {
-      addChoose(code_, line_, names_registers);
+      success = addChoose(code_, line_, names_registers);
       continue;
     }
 
     if (command == "minus") {
-      minusChoose(code_, line_, names_registers);
+      success = minusChoose(code_, line_, names_registers);
+      continue;
     }
 
     if (command == "divide") {
-      divideChoose(code_, line_, names_registers);
+      success = divideChoose(code_, line_, names_registers);
+      continue;
     }
 
     if (command == "sqrt") {
-      sqrtChoose(code_, line_, names_registers);
+      success = sqrtChoose(code_, line_, names_registers);
+      continue;
+    }
+
+    if (command == "scanf") {
+      success = scanfChoose(code_, line_, names_registers);
+      continue;
+    }
+
+    if (command == "printf") {
+      success = printfChoose(code_, line_, names_registers);
+      continue;
     }
 
     if (command == "end") {
-      endAssembler(output, code_);
+      success = endAssembler(output, code_);
       return true;
     }
   }
@@ -97,7 +113,7 @@ bool Assembler::endAssembler(const char *output, std::vector<double> &code) {
   FILE* assembler_out = fopen(output, "w");
   if (!assembler_out) return false;
   for (int i = 0; i < code_.size(); i++) {
-    fprintf(assembler_out, "%.2f ", code[i]);
+    fprintf(assembler_out, "%.2lf ", code[i]);
   }
   fprintf(assembler_out, "&");
   return true;
@@ -113,4 +129,5 @@ bool Assembler::Scanf(char *line, FILE* input) {
     i++;
     SPECIAL_SCANF;
   }
+  line[i] = '\0';
 }

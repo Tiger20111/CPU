@@ -6,6 +6,10 @@
 
 #include "commonFunc.h"
 
-bool pushRegistr (std::vector<double >& code, const char* line);
+bool pushOperative (std::vector<double >& code, const char* line);
+bool pushOperativeFromStack(std::vector<double >& code, const char* line);
+bool pushOperativeFromRegistr(std::vector<double >& code, const char* line, std::vector<std::string> &names_registers);
+bool popOperativeToStack(std::vector<double >& code, const char* line);
+bool popOperativeToRegistr(std::vector<double >& code, const char* line, std::vector<std::string> &names_registers);
 
 #endif //ASSEMBLER_WORKOPERATIVE_H

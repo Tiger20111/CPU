@@ -1,7 +1,7 @@
 #include "resistor.h"
 
 template<typename T>
-Resistor<double>::Resistor() {
+Resistor<T>::Resistor() {
   ax = 0;
   bx = 0;
   cx = 0;
@@ -10,119 +10,105 @@ Resistor<double>::Resistor() {
   fx = 0;
   gx = 0;
   hx = 0;
+  ix = 0;
   jx = 0;
 }
 
 template<typename T>
-inline void Resistor<T>::pushResistor(Stack <double> & stack, const int &name_resistor, T element, int *error) {
+T& Resistor<T>::captureRegistr(const int &name_resistor, int *error) {
   switch (name_resistor) {
-    case 1:
-      ax = element;
-      break;
-    case 2:
-      bx = element;
-      break;
-    case 3:
-      cx = element;
-      break;
-    case 4:
-      dx = element;
-      break;
-    case 5:
-      ex = element;
-      break;
-    case 6:
-      fx = element;
-      break;
-    case 7:
-      gx = element;
-      break;
-    case 8:
-      hx = element;
-      break;
-    case 9:
-      jx = element;
-      break;
-    default:
-      break;
-  }
-}
-
-template<typename T>
-T Resistor<T>::popResistor(Stack <double> & stack, const int &name_resistor, int *error) {
-  switch (name_resistor) {
-    case 1:
+    case 0:
       return ax;
-    case 2:
+    case 1:
       return bx;
-    case 3:
+    case 2:
       return cx;
-    case 4:
+    case 3:
       return dx;
-    case 5:
+    case 4:
       return ex;
-    case 6:
+    case 5:
       return fx;
-    case 7:
+    case 6:
       return gx;
-    case 8:
+    case 7:
       return hx;
+    case 8:
+      return ix;
     case 9:
-      return jx;
+      return ax;
     default:
-      perror("Something was happen");
-      return -1;
+      break;
   }
 }
 
 template<typename T>
-T Resistor<T>::addResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
-  auto element = popResistor(stack, name_resistor1) + popResistor(stack, name_resistor2);
-  stack.push(element);
-  return element;
+bool Resistor<T>::pushResistor(const int &name_resistor, T element, int *error) {
+  captureRegistr(name_resistor) = element;
 }
 
 template<typename T>
-T Resistor<T>::mulResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
-  auto element = popResistor(stack, name_resistor1) * popResistor(stack, name_resistor2);
-  stack.push(element);
-  return element;
+T Resistor<T>::popResistor(const int &name_resistor, int *error) {
+  T a = captureRegistr(name_resistor);
+  return captureRegistr(name_resistor);
 }
 
 template<typename T>
-T Resistor<T>::minusResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
-  auto element = popResistor(stack, name_resistor1) - popResistor(stack, name_resistor2);
-  stack.push(element);
-  return element;
+bool Resistor<T>::pushResistorFromStack(Stack <double> & stack, const int &name_resistor, int *error) {
+  pushResistor(name_resistor, *stack.pop());
+  return true;
+}
+template<typename T>
+bool Resistor<T>::popResistorToStack(Stack <double> & stack, const int &name_resistor, int *error) {
+  stack.push(popResistor(name_resistor));
+  return true;
 }
 
 template<typename T>
-T Resistor<T>::devideResistor(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
-  auto element = popResistor(stack, name_resistor1) / popResistor(stack, name_resistor2);
+bool Resistor<T>::addResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
+  auto element = popResistor(name_resistor1) + popResistor(name_resistor2);
   stack.push(element);
-  return element;
+  return true;
 }
 
+template<typename T>
+bool Resistor<T>::mulResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
+  auto element = popResistor(name_resistor1) * popResistor(name_resistor2);
+  stack.push(element);
+  return true;
+}
 
+template<typename T>
+bool Resistor<T>::minusResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
+  auto element = popResistor(name_resistor1) - popResistor(name_resistor2);
+  stack.push(element);
+  return true;
+}
 
+template<typename T>
+bool Resistor<T>::devideResistorToStack(Stack <double> & stack, const int &name_resistor1, const int &name_resistor2, int *error) {
+  auto element = popResistor(name_resistor1) / popResistor(name_resistor2);
+  stack.push(element);
+  return true;
+}
 
+template<typename T>
+bool Resistor<T>::sqrtResistorToStack(Stack <double> & stack, const int &name_resistor, int *error) {
+  stack.push(sqrt(popResistor(name_resistor)));
+  return true;
+}
 
+template<typename T>
+bool Resistor<T>::scanfResistor(Stack <double> & stack, const int &name_resistor, int *error) {
+  scanf("%lf", &captureRegistr(name_resistor));
+  return true;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+template<typename T>
+bool Resistor<T>::printfResistor(Stack <double> & stack, const int &name_resistor, int *error) {
+  printf("%.2lf", popResistor(name_resistor));
+  return true;
+}
 
 
 

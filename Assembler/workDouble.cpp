@@ -17,8 +17,6 @@
     }                                             \
   } while (false)
 
-bool castToDouble(char const *line, double *value);
-
 bool pushDouble(std::vector<double> &code, const char *line) {
   WORK_DOUBLE(11, 1);
 }

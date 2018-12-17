@@ -1,7 +1,7 @@
+#ifndef MYCPU_COMMANDDOUBLE_H
+#define MYCPU_COMMANDDOUBLE_H
 
-#ifndef CPU_COMMANDDOUBLE_H
-#define CPU_COMMANDDOUBLE_H
-#include "Stack.h"
+#include "stack.h"
 
 
 bool pushDoubl(Stack <double> & stack, double element, int* error);
@@ -13,4 +13,4 @@ bool devideDoubl(Stack <double> & stack, double element, int* error);
 bool sqrtDoubl(Stack <double> & stack, int* error);
 bool pushResistor(std::string name_resistor, int element);
 
-#endif //CPU_COMMANDDOUBLE_H
+#endif //MYCPU_COMMANDDOUBLE_H

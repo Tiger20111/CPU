@@ -1,4 +1,4 @@
-#include "CommandDouble.h"
+#include "commandDouble.h"
 
 #define MAX_ERROR()  \
   do {                        \
