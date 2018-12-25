@@ -6,6 +6,7 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
+#include <map>
 
 #include "parsingCommand.h"
 
@@ -25,11 +26,15 @@ class Assembler {
   bool endAssembler(const char *output, std::vector<double> &code);
   bool Scanf(char *line, FILE* input);
   bool InputNamesRegisters();
+  bool InputNamesJumps();
 
   int error;
   char* line_;
+  char* delete_line_;
   std::vector<double> code_;
-  std::vector<std::string> names_registers;
+  std::vector<std::string> names_registers_;
+  std::vector<std::string> names_jumps_;
+  std::map <std::string, std::pair<int, std::vector<int>>> tags_;
 };
 
 #endif //ASSEMBLER_ASSEMBLER_H

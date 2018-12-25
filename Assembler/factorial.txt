@@ -1,0 +1,16 @@
+scanf ax
+
+push 1
+pop ax
+
+begin:
+  minus 1
+  push Stack bx
+  mul ax bx
+  push Stack ax
+  pop bx
+  jne begin
+
+pop ax
+out
+END

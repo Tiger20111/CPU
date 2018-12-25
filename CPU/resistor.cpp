@@ -14,6 +14,12 @@ Resistor<T>::Resistor() {
   jx = 0;
 }
 
+
+//#define hhs(a, op, b) \
+//  a op b              \
+//
+//hhs(5, +, 7);
+
 template<typename T>
 T& Resistor<T>::captureRegistr(const int &name_resistor, int *error) {
   switch (name_resistor) {
@@ -36,7 +42,7 @@ T& Resistor<T>::captureRegistr(const int &name_resistor, int *error) {
     case 8:
       return ix;
     case 9:
-      return ax;
+      return jx;
     default:
       break;
   }
@@ -106,7 +112,7 @@ bool Resistor<T>::scanfResistor(Stack <double> & stack, const int &name_resistor
 
 template<typename T>
 bool Resistor<T>::printfResistor(Stack <double> & stack, const int &name_resistor, int *error) {
-  printf("%.2lf", popResistor(name_resistor));
+  printf("%.2lf\n", popResistor(name_resistor));
   return true;
 }
 

@@ -50,9 +50,7 @@ bool ParsingRegistr(std::string *arg, int num_arg, const char *line);
 bool castToDouble(std::string s, double *value);
 
 bool pushRegistr(std::vector<double> &code, const char *line, std::vector<std::string> &names_registers) {
-  OPERATIONS_WITH_REGISTRS(12, 2,
-
-                           1);
+  OPERATIONS_WITH_REGISTRS(12, 2, 1);
 }
 
 bool popRegistrToStack(std::vector<double> &code, const char *line, std::vector<std::string> &names_registers) {

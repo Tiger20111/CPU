@@ -79,10 +79,23 @@ bool devideDoubl(Stack <double> & stack, double element, int* error) {
 }
 
 bool sqrtDoubl(Stack <double> & stack, int* error) {
-  if (stack.isEmpty()) return false;
-
-  double* element = stack.pop();
+  double* element = stack.pop(error);
   stack.push(*element, error);
+
+  return (*error == 0);
+}
+
+bool inDouble(Stack <double> & stack, int* error) {
+  double element;
+  scanf("%lf", &element);
+  stack.push(element, error);
+
+  return (*error == 0);
+}
+
+bool outDouble(Stack <double> & stack, int* error) {
+  double element = *stack.showTop(error);
+  printf("%.2lf\n", element);
 
   return (*error == 0);
 }

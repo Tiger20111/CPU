@@ -3,4 +3,4 @@ project(MyCPU)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(MyCPU main.cpp cpu.cpp cpu.h stack.cpp stack.h resistor.cpp resistor.h commandDouble.cpp commandDouble.h operative.cpp operative.h)
+add_executable(MyCPU main.cpp cpu.cpp cpu.h stack.cpp stack.h resistor.cpp resistor.h commandDouble.cpp commandDouble.h operative.cpp operative.h jump.cpp jump.h)

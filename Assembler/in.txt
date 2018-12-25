@@ -1,6 +1,16 @@
 scanf ax
 scanf bx
-add ax bx
-push Stack cx
-printf cx
+
+pop ax
+pop bx
+
+ja Title
+
+printf bx
 end
+
+Title:
+printf ax
+end
+
+END

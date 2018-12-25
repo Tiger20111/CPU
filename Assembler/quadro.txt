@@ -1,0 +1,123 @@
+scanf ax
+scanf bx
+scanf cx
+
+push 0
+pop ax
+
+je Lineral
+pop
+pop cx
+je Lineral2
+
+pop
+jmp Quadro
+
+
+
+Lineral:
+  pop
+
+  pop bx
+  je AllOrNot
+
+  push ex 1
+  printf ex
+
+
+  pop
+  pop cx
+  mul -1
+  push Stack dx
+  divide dx bx
+  out
+
+  end
+
+
+
+
+Lineral2:
+  pop
+
+  push ex 2
+  printf ex
+
+  out
+  pop
+  divide bx ax
+
+  mul -1
+  out
+
+  end
+
+
+
+
+Quadro:
+  mul bx bx
+  mul ax cx
+  mul 4
+  push Stack gx
+  push Stack fx
+  minus fx gx
+
+  jb NoAnswer
+  je QuadroOne
+  jmp QuadroTwo
+  end
+
+AllOrNot:
+  pop
+  pop cx
+  jne NoAnswer
+  push ex 99999999999
+  printf ex
+  end
+
+
+NoAnswer:
+  push ex 0
+  printf ex
+  end
+
+
+QuadroOne:
+  push ex 2
+  printf ex
+  pop bx
+  divide 2
+  mul -1
+  push Stack fx
+  divide fx ax
+  out
+  out
+  end
+
+QuadroTwo:
+  push ex 2
+  printf ex
+  push Stack dx
+  sqrt dx
+  push Stack dx
+  pop bx
+  mul -1
+  push Stack fx
+  add fx dx
+  push Stack cx
+  divide cx ax
+  divide 2
+  out
+
+  pop
+
+  minus fx dx
+  push Stack cx
+  divide cx ax
+  divide 2
+  out
+  end
+
+
+END

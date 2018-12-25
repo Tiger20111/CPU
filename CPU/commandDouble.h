@@ -11,6 +11,7 @@ bool addDoubl(Stack <double> & stack, double element, int* error);
 bool minusDoubl(Stack <double> & stack, double element, int* error);
 bool devideDoubl(Stack <double> & stack, double element, int* error);
 bool sqrtDoubl(Stack <double> & stack, int* error);
-bool pushResistor(std::string name_resistor, int element);
+bool inDouble(Stack <double> & stack, int* error);
+bool outDouble(Stack <double> & stack, int* error);
 
 #endif //MYCPU_COMMANDDOUBLE_H

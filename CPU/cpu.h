@@ -12,6 +12,7 @@
 #include "stack.h"
 #include "resistor.h"
 #include "operative.h";
+#include "jump.h"
 
 #define DEFOULT_HARD 0
 #define SIZE_FILE 100

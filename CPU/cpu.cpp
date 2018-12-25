@@ -79,6 +79,20 @@ bool CPU::Compiler(const char* fread) {
         ERROR_OUT;
         continue;
       }
+
+      if (isEqual(code_[i], 81)) {
+        inDouble(stack, &error);
+        i += 1;
+        ERROR_OUT;
+        continue;
+      }
+
+      if (isEqual(code_[i], 91)) {
+        outDouble(stack, &error);
+        i += 1;
+        ERROR_OUT;
+        continue;
+      }
     }
 
     if ((int) (code_[i] - 2) % 10 == 0) {
@@ -189,7 +203,67 @@ bool CPU::Compiler(const char* fread) {
         continue;
       }
     }
+    if ((int) (code_[i] - 4) % 10 == 0) {
+      bool logic = true;
+      if (isEqual(code_[i], 14)) {
+        i = (int) code_[i + 1];
+        continue;
+      }
+      if (isEqual(code_[i], 24)) {
+        je(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+      if (isEqual(code_[i], 34)) {
+        jne(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+      if (isEqual(code_[i], 44)) {
+        jae(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+      if (isEqual(code_[i], 54)) {
+        jb(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+      if (isEqual(code_[i], 64)) {
+        jbe(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+      if (isEqual(code_[i], 74)) {
+        ja(stack, logic);
+        if (logic)
+          i = (int) code_[i + 1];
+        else
+          i += 2;
+        continue;
+      }
+    }
 
+    if ((int) (code_[i] - 5) % 10 == 0) {
+      if (isEqual(code_[i], 15)) {
+        return true;
+      }
+    }
   }
 }
 

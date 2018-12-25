@@ -114,7 +114,7 @@ inline T *Stack<T>::pop(int *error) {
   }
 
   try {
-    assert(stack[index_head - 1]);
+    stack[index_head - 1]; //bad moment. Smth need as assert
   } catch (int e) {
     FAILWITH("element in stack was broken", CRASHBE, 1);
     return nullptr;

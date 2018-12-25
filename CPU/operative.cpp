@@ -33,7 +33,7 @@ bool Operative<T>::pushOperative (T element, int index_operative, int *error) {
 
 
 template<typename T>
-bool Operative<T>::pushOperativeFromStack (int index_operative,   Stack<double>& stack, int *error) {
+bool Operative<T>::pushOperativeFromStack (int index_operative, Stack<double>& stack, int *error) {
   WORK_OPERATIVE;
   operative_buffer[index_operative] = *stack.pop();
   return true;
